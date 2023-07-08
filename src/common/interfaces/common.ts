@@ -19,3 +19,9 @@ export interface MRCResponseSuccess {
   start: number
   end: number
 }
+
+export interface ResponseStatusSuccess {
+  loaded: boolean
+  compute_type: string
+  framework: string
+}
