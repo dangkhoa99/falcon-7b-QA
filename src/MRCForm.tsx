@@ -14,7 +14,7 @@ import { MRCFormValue } from '@/common/interfaces'
 import { pingModel, robertaMRC } from '@/common/apis'
 import { ProgressBar, TypeWriter } from './common/components'
 
-export const MRC: FC<{}> = () => {
+export const MRCForm: FC<{}> = () => {
   const [waitModel, setWaitModel] = useState(0)
   const [example, setExample] = useState<string>('')
   const [formValue, setFormValue] = useState<MRCFormValue>({

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { MRC } from './MRC'
+import { MRCForm } from './MRCForm'
 import { Container } from '@mui/material'
 
 export const App: FC<{}> = () => {
@@ -8,7 +8,7 @@ export const App: FC<{}> = () => {
       fixed
       disableGutters
       sx={{ p: 2, height: '100%', overflow: 'auto' }}>
-      <MRC />
+      <MRCForm />
     </Container>
   )
 }
