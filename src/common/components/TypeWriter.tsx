@@ -5,7 +5,6 @@ export const TypeWriter: FC<{ text: string }> = ({ text }) => {
   const [currentText, setCurrentText] = useState('')
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  // Typing logic goes here
   useEffect(() => {
     if (!text) return
 
@@ -17,7 +16,17 @@ export const TypeWriter: FC<{ text: string }> = ({ text }) => {
 
       return () => clearTimeout(timeout)
     }
+
+    return () => {}
   }, [currentIndex, text])
+
+  useEffect(() => {
+    if (!text) return
+    setCurrentText('')
+    setCurrentIndex(0)
+
+    return () => {}
+  }, [text])
 
   return (
     <TextField
