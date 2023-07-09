@@ -41,7 +41,7 @@ export const MRCForm: FC<{}> = () => {
     robertaMRC(formValue)
       .then((res) => setAnswer({ text: res.answer, isLoading: false }))
       .catch((err) => {
-        console.error(`[ERROR]: >>`, err)
+        console.error(`[ERROR]`, err)
         if (err.response.status !== 503) return
         setWaitModel(err.response.data.estimated_time)
       })
@@ -90,7 +90,7 @@ export const MRCForm: FC<{}> = () => {
         display: 'flex',
         alignItems: 'center',
       }}>
-      <Grid container spacing={2}>
+      <Grid container alignItems='center' spacing={2}>
         <Grid item xs={12} sm={12} xl={12}>
           <Typography
             variant='h3'
@@ -103,7 +103,7 @@ export const MRCForm: FC<{}> = () => {
         {waitModel !== 0 ? (
           <>
             <Grid item xs={6} sm={6} xl={6}>
-              <ProgressBar time={waitModel * 1000} setTime={setWaitModel} />
+              <ProgressBar time={waitModel} setTime={setWaitModel} />
             </Grid>
 
             <Grid item xs={6} sm={6} xl={6}>
