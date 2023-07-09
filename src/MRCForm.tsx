@@ -1,4 +1,4 @@
-import { getStatusModel, pingModel, robertaMRC } from '@/common/apis'
+import { pingModel, robertaMRC } from '@/common/apis'
 import { MRCFormValue } from '@/common/interfaces'
 import {
   Alert,
@@ -62,22 +62,12 @@ export const MRCForm: FC<{}> = () => {
   }, [])
 
   useEffect(() => {
-    // Get Status Model
-    getStatusModel(`dangkhoa99/roberta-base-finetuned-squad-v2`)
-      .then((res) => {
-        if (!res.loaded) return
-
-        // If model is not loaded, ping model
-        // Get estimated time
-        pingModel(`dangkhoa99/roberta-base-finetuned-squad-v2`).catch((err) => {
-          console.error(`[ERROR][PING]`, err)
-          if (err.response.status !== 503) return
-          setWaitModel(err.response.data.estimated_time)
-        })
-      })
-      .catch((err) => {
-        console.error(`[ERROR][STATUS]`, err)
-      })
+    // Ping model => If model is not loaded, get estimated time
+    pingModel(`dangkhoa99/roberta-base-finetuned-squad-v2`).catch((err) => {
+      console.error(`[ERROR][PING]`, err)
+      if (err.response.status !== 503) return
+      setWaitModel(err.response.data.estimated_time)
+    })
 
     return () => {}
   }, [])
