@@ -76,7 +76,7 @@ export const MRCForm: FC<{}> = () => {
     <Box
       sx={{
         width: '100%',
-        height: '100%',
+        height: 'auto',
         display: 'flex',
         alignItems: 'center',
       }}>
