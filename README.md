@@ -1,4 +1,4 @@
-# Machine Reading Comprehension
+# Falcon-7B finetuned QA on SQuAD 2.0
 
 ## Getting started
 
@@ -10,3 +10,7 @@
   2. ```bash
      npm run dev
      ```
+
+## Model
+
+🤗 Hugging Face: https://huggingface.co/dangkhoa99/falcon-7b-finetuned-QA-MRC-4-bit
