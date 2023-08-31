@@ -6,7 +6,13 @@ const renderTheme = (mode: PaletteMode) => {
     spacing: 4,
     palette: { mode: mode, primary: { main: '#6610f2' } },
     typography: { fontFamily: 'Roboto, Arial, san-serif' },
+    components: {
+      MuiButton: { defaultProps: { disableElevation: true } },
+      MuiInputLabel: { styleOverrides: { asterisk: { color: 'red' } } },
+    },
   })
 }
 
-export const lightTheme = renderTheme('light')
+export const Theme = {
+  LIGHT: renderTheme('light'),
+}
