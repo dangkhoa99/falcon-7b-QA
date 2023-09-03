@@ -1,41 +1,6 @@
 import axios from 'axios'
-import {
-  MRCFormValue,
-  MRCResponseSuccess,
-  ResponseStatusSuccess,
-} from '../interfaces'
-import { BASE_STATUS_URL, BASE_URL, EXAMPLES } from '../constants'
-
-export const pingModel = async (url: string): Promise<MRCResponseSuccess> => {
-  const response = await axios({
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer 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`,
-    },
-    url: `${BASE_URL}/${url}`,
-    data: {
-      inputs: {
-        context: EXAMPLES[0].context,
-        question: EXAMPLES[0].question,
-      },
-    },
-  })
-  const { data } = response
-  return data
-}
-
-export const getStatusModel = async (
-  url: string,
-): Promise<ResponseStatusSuccess> => {
-  const response = await axios({
-    method: 'get',
-    headers: { 'Content-Type': 'application/json' },
-    url: `${BASE_STATUS_URL}/${url}`,
-  })
-  const { data } = response
-  return data
-}
+import { BASE_URL } from '../constants'
+import { MRCFormValue, MRCResponseSuccess } from '../interfaces'
 
 export const robertaMRC = async (
   formValue: MRCFormValue,

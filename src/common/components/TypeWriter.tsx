@@ -6,7 +6,9 @@ export const TypeWriter: FC<{ text: string }> = ({ text }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   useEffect(() => {
-    if (!text) return
+    if (!text) {
+      return
+    }
 
     if (currentIndex < text.length) {
       const timeout = setTimeout(() => {
@@ -21,7 +23,6 @@ export const TypeWriter: FC<{ text: string }> = ({ text }) => {
   }, [currentIndex, text])
 
   useEffect(() => {
-    if (!text) return
     setCurrentText('')
     setCurrentIndex(0)
 
@@ -31,12 +32,12 @@ export const TypeWriter: FC<{ text: string }> = ({ text }) => {
   return (
     <TextField
       fullWidth
-      variant='outlined'
       multiline
-      rows={10}
       label='Answer'
       value={currentText}
       inputProps={{ readOnly: true }}
+      InputLabelProps={{ shrink: true }}
+      spellCheck={false}
     />
   )
 }
