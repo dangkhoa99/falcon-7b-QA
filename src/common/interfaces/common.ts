@@ -20,6 +20,11 @@ export interface MRCResponseSuccess {
   end: number
 }
 
+export interface Falcon7BResponseSuccess {
+  answer: string
+  time: string
+}
+
 export interface ResponseStatusSuccess {
   loaded: boolean
   compute_type: string

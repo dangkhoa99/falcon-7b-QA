@@ -2,6 +2,8 @@ import { MRCExamples } from '../interfaces'
 
 export const BASE_URL = 'https://api-inference.huggingface.co/models'
 export const BASE_STATUS_URL = 'https://api-inference.huggingface.co/status'
+export const API_FALCON_7B_URL =
+  'https://yft8y962f262st2r.us-east-1.aws.endpoints.huggingface.cloud'
 
 export const EXAMPLES: MRCExamples[] = [
   {

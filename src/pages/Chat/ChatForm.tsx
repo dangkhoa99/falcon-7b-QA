@@ -1,4 +1,4 @@
-import { robertaMRC } from '@/common/apis'
+import { falcon7B } from '@/common/apis'
 import { ExampleSelect, TypeWriter } from '@/common/components'
 import { MRCFormValue } from '@/common/interfaces'
 import {
@@ -23,8 +23,13 @@ const ChatForm: FC<{}> = () => {
     context: '',
     question: '',
   })
-  const [answer, setAnswer] = useState<{ text: string; isLoading: boolean }>({
+  const [answer, setAnswer] = useState<{
+    text: string
+    time?: string
+    isLoading: boolean
+  }>({
     text: '',
+    time: '0s',
     isLoading: false,
   })
 
@@ -34,7 +39,7 @@ const ChatForm: FC<{}> = () => {
     switch (key) {
       case 'example':
         setFormValue({ context: value.context, question: value.question })
-        setAnswer({ text: '', isLoading: false })
+        setAnswer({ text: '', time: '0s', isLoading: false })
 
         break
       default:
@@ -49,12 +54,18 @@ const ChatForm: FC<{}> = () => {
       return
     }
 
-    setAnswer({ text: '', isLoading: true })
+    setAnswer({ text: '', time: '0s', isLoading: true })
 
-    robertaMRC(formValue)
-      .then((res) => setAnswer({ text: res.answer, isLoading: false }))
+    falcon7B(formValue)
+      .then((res) => {
+        setAnswer({ text: res.answer, time: res.time, isLoading: false })
+      })
       .catch((err) => {
         console.error(`[ERROR]`, err)
+        if (err.code === 'ERR_NETWORK') {
+          alert('API is not available at the moment. Please try again later.')
+          return
+        }
         if (err.response.status !== 503) return
       })
       .finally(() => setAnswer((prev) => ({ ...prev, isLoading: false })))
@@ -169,8 +180,21 @@ const ChatForm: FC<{}> = () => {
           </Button>
         </Grid>
 
-        <Grid item xs={12}>
-          <TypeWriter text={answer.text} />
+        <Grid item xs={12} container>
+          <Grid item xs={12}>
+            <TypeWriter text={answer.text} />
+          </Grid>
+
+          <Grid item xs={12} container justifyContent='end' alignItems='center'>
+            <Typography
+              variant='h6'
+              fontWeight={400}
+              sx={{ fontSize: 14 }}
+              textAlign='end'>
+              Time: {''}
+              {answer.isLoading ? <CircularProgress size={10} /> : answer.time}
+            </Typography>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
