@@ -29,6 +29,7 @@ export const falcon7B = async (
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
+      Accept: 'application/json',
       Authorization: `Bearer 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`,
     },
     url: API_FALCON_7B_URL,
